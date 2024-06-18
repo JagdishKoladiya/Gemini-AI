@@ -41,6 +41,12 @@ export function ChatBox() {
               </>
             );
           })}
+          {isLoading && (
+            <div className="flex items-start gap-4 animate-pulse">
+              <div className="border w-8 h-8 dark:border-gray-800 bg-gray-200 rounded-full"></div>
+              <div className="bg-gray dark:bg-gray-900 rounded-lg p-4 max-w-[70%] text-sm shadow-md w-full"></div>
+            </div>
+          )}
         </div>
         <form onSubmit={handleSubmit}>
           <div className="bg-white dark:bg-gray-950 p-4 flex items-center gap-2">
