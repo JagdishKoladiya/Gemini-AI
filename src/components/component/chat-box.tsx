@@ -21,7 +21,7 @@ export function ChatBox() {
               <>
                 {item?.role === "user" ? (
                   <div className="flex justify-end items-start gap-4">
-                    <div className="bg-blue-500 text-white rounded-lg p-4 max-w-[70%] text-sm">
+                    <div className="bg-black text-white rounded-lg p-4 max-w-[70%] text-sm">
                       <p> {item.content}</p>
                     </div>
                     <Avatar className="border w-8 h-8 dark:border-gray-800">
@@ -62,16 +62,6 @@ export function ChatBox() {
           </div>
         </form>
       </div>
-
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          name="prompt"
-          value={input}
-          onChange={handleInputChange}
-          id="input"
-        />
-        <button type="submit">Submit</button>
-      </form> */}
     </>
   );
 }
