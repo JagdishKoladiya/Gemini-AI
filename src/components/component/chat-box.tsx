@@ -12,12 +12,12 @@ export function ChatBox() {
         style={{ marginTop: "72px" }}
       >
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          {messages.map((iteam) => {
+          {messages.map((item) => {
             return (
               <>
                 <div
                   className={
-                    iteam?.role === "user"
+                    item?.role === "user"
                       ? "items-start"
                       : "justify-end" + "flex  gap-4"
                   }
@@ -27,7 +27,7 @@ export function ChatBox() {
                     <AvatarFallback>OA</AvatarFallback>
                   </Avatar>
                   <div className="bg-gray dark:bg-gray-900 rounded-lg p-4 max-w-[70%] text-sm shadow-md">
-                    <p> {iteam.content}</p>
+                    <p> {item.content}</p>
                   </div>
                 </div>
               </>
