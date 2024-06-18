@@ -4,7 +4,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useChat } from "@ai-sdk/react";
 export function ChatBox() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, handleInputChange, handleSubmit, isLoading, error } =
+    useChat({
+      api: "/api/gemini",
+    });
   return (
     <>
       <div
@@ -13,23 +16,28 @@ export function ChatBox() {
       >
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {messages.map((item) => {
+            console.log("{messages.map → item:", item);
             return (
               <>
-                <div
-                  className={
-                    item?.role === "user"
-                      ? "items-start"
-                      : "justify-end" + "flex  gap-4"
-                  }
-                >
-                  <Avatar className="border w-8 h-8 dark:border-gray-800">
-                    <AvatarImage src="/placeholder-user.jpg" />
-                    <AvatarFallback>OA</AvatarFallback>
-                  </Avatar>
-                  <div className="bg-gray dark:bg-gray-900 rounded-lg p-4 max-w-[70%] text-sm shadow-md">
-                    <p> {item.content}</p>
+                {item?.role === "user" ? (
+                  <div className="flex justify-end items-start gap-4">
+                    <div className="bg-blue-500 text-white rounded-lg p-4 max-w-[70%] text-sm">
+                      <p> {item.content}</p>
+                    </div>
+                    <Avatar className="border w-8 h-8 dark:border-gray-800">
+                      <AvatarImage src="/placeholder-user.jpg" />
+                    </Avatar>
                   </div>
-                </div>
+                ) : (
+                  <div className="flex items-start gap-4">
+                    <Avatar className="border w-8 h-8 dark:border-gray-800">
+                      <AvatarImage src="/placeholder-user.jpg" />
+                    </Avatar>
+                    <div className="bg-gray dark:bg-gray-900 rounded-lg p-4 max-w-[70%] text-sm shadow-md">
+                      <p> {item.content}</p>
+                    </div>
+                  </div>
+                )}
               </>
             );
           })}
